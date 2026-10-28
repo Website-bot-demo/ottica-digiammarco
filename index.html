@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ottica Di Giammarco, Via Giovanni Volpato 29 a Roma: ottica di famiglia dal 1964. Occhiali da vista su misura, lenti a contatto, misurazione della vista, occhiali da sole. Centro Ottico Zeiss.">
+<link rel="icon" href="img/logo.png">
+<style>
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+  :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+</style>
+<title>Ottica Di Giammarco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: ottica di famiglia, blu notte del logo su bianco, titoli serif come un'insegna d'altri tempi. */
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --tint: #f3f5fa;
+    --fg: #141b33;
+    --muted: #59627a;
+    --line: #e1e5ef;
+    --navy: #1d2a5c;
+    --navy-soft: #3a4a85;
+    --on-navy: #ffffff;
+    --accent: #b38a3e;
+    --display: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --body: "Figtree", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.6; overflow-x: hidden; }
+  a { color: inherit; }
+  .wrap {
+    max-width: 1120px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  section { padding-block: 72px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.04; margin: 0; text-wrap: balance; color: var(--navy); }
+  h2 { font-size: clamp(38px, 5.6vw, 58px); letter-spacing: -.01em; }
+  .eyebrow {
+    font-weight: 600; font-size: 13px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 12px; text-align: center;
+  }
+  .lead { color: var(--muted); max-width: 60ch; margin: 16px auto 0; font-size: 18px; text-align: center; }
+  section > .wrap > h2 { text-align: center; }
+  [id] { scroll-margin-top: 96px; }
+
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--surface); z-index: 20; }
+  .draft { background: var(--fg); color: #fff; text-align: center; font-size: 14px; padding: 9px 16px; }
+
+  /* marchio */
+  .mark { display: inline-flex; flex-direction: column; text-decoration: none; line-height: 1; }
+  .mark img { display: block; height: 52px; width: auto; }
+  .hero-logo { display: block; width: clamp(200px, 30vw, 300px); height: auto; margin: 0 auto 26px; }
+
+  header {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+    background: rgba(255, 255, 255, .93); backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent; transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  header.stuck { border-bottom-color: var(--line); box-shadow: 0 6px 24px rgba(20, 27, 51, .06); }
+  header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding-block: 16px; }
+  nav { display: flex; flex-wrap: wrap; gap: 4px 26px; font-weight: 500; font-size: 15.5px; }
+  nav a { text-decoration: none; color: var(--muted); position: relative; padding-block: 2px; }
+  nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1.5px; background: var(--navy); transform: scaleX(0); transform-origin: left; transition: transform .22s ease; }
+  nav a:hover { color: var(--navy); }
+  nav a:hover::after { transform: scaleX(1); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 26px;
+    border-radius: 999px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--navy); font-size: 16.5px;
+    font-family: inherit; cursor: pointer;
+  }
+  .btn.primary { background: var(--navy); color: var(--on-navy); box-shadow: 0 10px 24px rgba(29, 42, 92, .2); }
+  .btn.ghost { color: var(--navy); background: transparent; }
+  .btn.light { background: #fff; color: var(--navy); border-color: #fff; }
+  .btn.outline-light { color: #fff; border-color: rgba(255, 255, 255, .55); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  /* stato apertura */
+  .status {
+    display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: var(--surface);
+    border-radius: 999px; padding: 8px 18px; font-size: 15px; font-weight: 600; margin: 0 0 22px;
+    box-shadow: 0 8px 20px rgba(20, 27, 51, .05);
+  }
+  .status .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); flex: none; }
+  .status.is-open .dot { background: #15a34a; box-shadow: 0 0 0 4px rgba(21, 163, 74, .16); }
+  .status.is-closed .dot { background: #d03b3b; box-shadow: 0 0 0 4px rgba(208, 59, 59, .14); }
+  .status.in-contact { margin: 16px 0 0; }
+
+  /* hero */
+  .hero { position: relative; overflow: hidden; padding-block: 64px 56px; text-align: center; }
+  .hero::before { content: ""; position: absolute; z-index: -1; width: 680px; height: 680px; left: 50%; top: -90px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, rgba(29, 42, 92, .1), transparent 66%); }
+  .hero .wrap { display: flex; flex-direction: column; align-items: center; }
+  .hero h1 { font-size: clamp(54px, 9.6vw, 108px); letter-spacing: -.015em; }
+  .hero h1 em { font-style: italic; color: var(--navy-soft); }
+  .hero p { color: var(--muted); font-size: 19px; max-width: 46ch; margin: 22px auto 0; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+  .zeiss {
+    margin-top: 34px; display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--navy);
+  }
+  .zeiss::before, .zeiss::after { content: ""; width: 34px; height: 1px; background: var(--line); }
+
+  /* chi siamo */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: center; margin-top: 40px; }
+  .about-text { text-align: center; }
+  .about-text p { color: var(--muted); max-width: 52ch; margin: 0 auto 16px; }
+  .about-text p.quote { font-family: var(--display); font-size: 27px; line-height: 1.25; color: var(--navy); font-style: italic; }
+  .ph {
+    border: 2px dashed var(--line); border-radius: 18px; aspect-ratio: 4 / 5; max-width: 100%;
+    display: flex; align-items: center; justify-content: center; text-align: center; padding: 20px;
+    color: var(--muted); background: var(--tint); font-size: 15px;
+  }
+  .family { margin: 0; position: relative; }
+  .family img { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%; border-radius: 18px; box-shadow: 0 30px 60px rgba(20, 27, 51, .16); }
+  .family figcaption { position: absolute; left: 16px; bottom: 16px; background: rgba(255, 255, 255, .94); color: var(--navy); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; padding: 8px 14px; border-radius: 999px; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .fact { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+  .fact b { display: block; font-family: var(--display); font-weight: 400; font-size: 66px; color: var(--navy); line-height: 1; font-variant-numeric: tabular-nums; }
+  .fact strong { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); }
+  .fact small { color: var(--muted); font-size: 14.5px; line-height: 1.4; max-width: 18ch; }
+
+  /* fatti a mano */
+  .hand-band { background: var(--tint); border-block: 1px solid var(--line); }
+  .points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 38px; }
+  .point { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 32px 26px; text-align: center; }
+  .point h3 { font-size: 32px; }
+  .point p { margin: 10px auto 0; color: var(--muted); font-size: 16px; max-width: 30ch; }
+
+  /* servizi */
+  .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 38px; }
+  .svc {
+    position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 28px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; min-height: 190px;
+  }
+  .svc::before { content: ""; position: absolute; inset: auto 0 0 0; height: 3px; background: var(--navy); transform: scaleX(0); transform-origin: left; }
+  .svc-ico {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--tint); color: var(--navy);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 4px;
+    transition: background .26s ease, color .26s ease, transform .26s ease;
+  }
+  .svc-ico svg { width: 30px; height: 30px; display: block; }
+  .svc:hover .svc-ico { background: var(--navy); color: #fff; transform: scale(1.08); }
+  .svc h3 { font-size: 27px; }
+  .svc p { margin: 0 auto; color: var(--muted); font-size: 15px; max-width: 26ch; }
+
+  /* marchi */
+  .brands-band { background: var(--tint); border-block: 1px solid var(--line); }
+  .brand-group { margin-top: 36px; }
+  .brand-group h3 { font-family: var(--body); font-size: 13px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 16px; }
+  .brands { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .brand {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px; aspect-ratio: 2 / 1; max-width: 100%;
+    display: flex; align-items: center; justify-content: center; padding: 10px; text-align: center;
+  }
+  .brand span { font-family: var(--display); font-size: clamp(22px, 2.4vw, 30px); color: var(--navy); line-height: 1.05; }
+  .brand img { display: block; height: auto; max-height: 80%; object-fit: contain; }
+  .brands-note { color: var(--muted); margin: 22px 0 0; font-size: 15.5px; text-align: center; }
+
+  /* recensioni */
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 38px; }
+  .review {
+    position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 62px 26px 28px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 22px;
+  }
+  .review::before { content: "\201C"; position: absolute; left: 0; right: 0; top: 4px; font-family: var(--display); font-size: 96px; line-height: 1; color: var(--accent); opacity: .45; }
+  .review p { margin: 0 auto; font-size: 17px; max-width: 32ch; }
+  .review .who { font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--navy); }
+  .reviews-link { margin: 26px 0 0; font-size: 16px; text-align: center; }
+
+  /* banda */
+  .band { background: linear-gradient(135deg, #131c40, var(--navy)); color: #fff; }
+  .band .wrap { padding-block: 60px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; }
+  .band h2 { color: #fff; }
+  .band p { margin: 12px auto 0; color: rgba(255, 255, 255, .82); max-width: 46ch; }
+
+  /* contatti */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 46px; margin-top: 38px; align-items: start; }
+  .info { display: grid; gap: 22px; margin: 0; }
+  .info dt { font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+  .info dd { margin: 4px 0 0; font-size: 18.5px; }
+  .info a { text-decoration: none; border-bottom: 1.5px solid var(--line); }
+  .hours { width: 100%; border-collapse: collapse; margin-top: 4px; }
+  .hours th, .hours td { padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 16.5px; }
+  .hours th { text-align: left; font-weight: 400; }
+  .hours td { text-align: right; font-variant-numeric: tabular-nums; }
+  .hours tr.today th, .hours tr.today td { font-weight: 700; color: var(--navy); }
+  .hours-note { color: var(--muted); font-size: 14px; margin: 12px 0 0; }
+  form { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: grid; gap: 15px; box-shadow: 0 18px 44px rgba(20, 27, 51, .06); }
+  form h3 { font-size: 36px; }
+  label { font-size: 15px; font-weight: 600; display: grid; gap: 6px; }
+  input[type="text"], input[type="tel"], input[type="email"], textarea {
+    font: inherit; color: var(--fg); background: #fff; border: 1.5px solid var(--line); border-radius: 10px;
+    padding: 13px 15px; width: 100%; min-width: 0; transition: border-color .18s ease, box-shadow .18s ease;
+  }
+  input:focus, textarea:focus { border-color: var(--navy); box-shadow: 0 0 0 4px rgba(29, 42, 92, .1); }
+  textarea { min-height: 112px; resize: vertical; }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; color: var(--muted); font-size: 14px; }
+  .check input { margin-top: 4px; width: 18px; height: 18px; flex: none; }
+  #msg { margin: 0; font-size: 15px; color: var(--navy); min-height: 1.4em; }
+
+  footer { border-top: 1px solid var(--line); background: var(--tint); }
+  footer .wrap { padding-block: 32px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; color: var(--muted); font-size: 14.5px; }
+
+  .reveal-on .reveal { opacity: 0; transform: translateY(22px); }
+  .reveal-on .reveal.in { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s cubic-bezier(.2, .7, .3, 1); }
+
+  .mobile-bar { display: none; }
+
+  @media (max-width: 960px) {
+    .about, .contact { grid-template-columns: 1fr; }
+    .services, .brands { grid-template-columns: repeat(2, 1fr); }
+    .points, .reviews { grid-template-columns: 1fr; }
+    .family img { aspect-ratio: 1 / 1.1; }
+    section { padding-block: 54px; }
+  }
+  @media (max-width: 720px) {
+    header .wrap { padding-block: 12px; gap: 10px; }
+    nav { width: 100%; flex-wrap: nowrap; overflow-x: auto; gap: 20px; padding-bottom: 4px; scrollbar-width: none; }
+    nav::-webkit-scrollbar { display: none; }
+    nav a { white-space: nowrap; }
+    [id] { scroll-margin-top: 130px; }
+    .hero { padding-block: 40px 40px; }
+    .hero .cta { display: none; }
+    .cta .btn { flex: 1 1 100%; }
+    .band .cta .btn { flex: 1 1 auto; }
+    section { padding-block: 46px; }
+    form { padding: 22px; }
+    .mobile-bar {
+      display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      background: rgba(255, 255, 255, .96); backdrop-filter: blur(10px); border-top: 1px solid var(--line);
+      padding: 10px max(12px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    }
+    .mobile-bar .btn { flex: 1; min-height: 48px; padding: 0 12px; font-size: 16px; }
+    body { padding-bottom: 80px; }
+  }
+  @media (max-width: 540px) {
+    .services { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .svc { min-height: 0; padding: 18px 10px; gap: 6px; }
+    .svc h3 { font-size: 20px; }
+    .svc p { font-size: 13px; line-height: 1.45; }
+    .svc-ico { width: 48px; height: 48px; }
+    .svc-ico svg { width: 24px; height: 24px; }
+    .mark img { height: 44px; }
+    .fact b { font-size: 50px; }
+    .facts { gap: 10px; }
+    .fact strong { font-size: 11.5px; letter-spacing: .1em; }
+    .fact small { font-size: 13px; }
+    h2 { font-size: clamp(34px, 9vw, 44px); }
+    .hero p, .lead { font-size: 17px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn, .svc, .point, .brand, .review { transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .svc:hover, .point:hover { transform: translateY(-6px); border-color: var(--navy); box-shadow: 0 18px 38px rgba(20, 27, 51, .09); }
+    .svc::before { transition: transform .26s ease; }
+    .svc:hover::before { transform: scaleX(1); }
+    .brand img { opacity: .85; transition: transform .28s ease, opacity .28s ease; }
+    .brand:hover { transform: translateY(-9px) scale(1.04); border-color: var(--navy); box-shadow: 0 18px 36px rgba(29, 42, 92, .16); }
+    .brand:hover img { opacity: 1; transform: scale(1.12); }
+    .review:hover { transform: translateY(-5px); box-shadow: 0 16px 34px rgba(20, 27, 51, .08); }
+    .status.is-open .dot { animation: pulse 2.4s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(21, 163, 74, .16); } 50% { box-shadow: 0 0 0 9px rgba(21, 163, 74, .05); } }
+    .rise { animation: rise .8s cubic-bezier(.2, .7, .3, 1) both; }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+
+</head>
+<body>
+<div class="draft">Bozza di lavoro: la partita IVA è ancora provvisoria.</div>
+
+<header id="hd">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Ottica Di Giammarco, inizio pagina"><img src="img/logo.png" alt="Ottica Di Giammarco, optometria e contattologia" width="388" height="232"></a>
+    <nav aria-label="Menu">
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#servizi">Servizi</a>
+      <a href="#marchi">Marchi</a>
+      <a href="#recensioni">Recensioni</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap rise">
+      <img class="hero-logo" src="img/logo.png" alt="" width="388" height="232">
+      <p class="status" data-status role="status"><span class="dot"></span><span data-label>Orari del negozio</span></p>
+      <h1>Occhiali su misura, <em>per come vedi.</em></h1>
+      <p>Ottica a conduzione familiare da oltre 60&nbsp;anni, in Via&nbsp;G.&nbsp;Volpato&nbsp;29 a&nbsp;Roma.</p>
+      <div class="cta">
+        <a class="btn primary" href="tel:+39065593477">Chiama 06 55 93 477</a>
+        <a class="btn ghost" href="https://maps.app.goo.gl/zso1Jv4mqe66kj2p8" target="_blank" rel="noopener">Come arrivare</a>
+      </div>
+      <span class="zeiss">Centro Ottico Zeiss</span>
+    </div>
+  </section>
+
+  <section id="chi-siamo" style="padding-top:24px">
+    <div class="wrap">
+      <p class="eyebrow">Chi siamo</p>
+      <h2>Tre generazioni, una famiglia</h2>
+      <div class="about">
+        <div class="about-text">
+          <p>L'Ottica Di Giammarco è un punto di riferimento nella zona di Roma Marconi dal 1964. L'ha fondata Gino Di Giammarco; oggi la portano avanti il figlio Roberto e la nipote Miriam Di Giammarco, dottoressa in optometria.</p>
+          <p class="quote">I nostri occhiali sono fatti come un abito dal sarto: su misura, adattati a te.</p>
+          <p>Partiamo da test precisi sulla tua vista e sul tuo viso, e costruiamo l'occhiale intorno a quello che ti serve davvero. Un occhiale industriale costa meno all'inizio, ma si vede nel tempo: si deforma, scivola sul naso, stanca. Un occhiale fatto con cura dura di più, sta meglio, quindi alla lunga conviene.</p>
+          <div class="facts">
+            <div class="fact"><b data-count-to="60" data-suffix="+">60+</b><strong>Anni di esperienza</strong><small>Nello stesso quartiere dal 1964</small></div>
+            <div class="fact"><b data-count-to="3">3</b><strong>Generazioni</strong><small>Da Gino a Roberto, fino a Miriam</small></div>
+            <div class="fact"><b data-count-to="1">1</b><strong>Famiglia</strong><small>I Di Giammarco, dal primo giorno</small></div>
+          </div>
+        </div>
+        <figure class="family">
+          <img src="foto/roberto-miriam.jpg" alt="Miriam e Roberto Di Giammarco in camice, schiena contro schiena, davanti agli espositori di occhiali del negozio" width="958" height="1400" loading="lazy">
+          <figcaption>Miriam e Roberto Di Giammarco</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="hand-band">
+    <section>
+      <div class="wrap">
+        <p class="eyebrow">Il nostro lavoro</p>
+        <h2>Occhiali fatti a mano, non prodotti in serie</h2>
+        <p class="lead">Un occhiale fatto a mano è lavorato con cura, con materiali di qualità e su misura per te: la differenza si nota nel tempo, su viso, naso e occhi.</p>
+        <div class="points">
+          <article class="point reveal"><h3>Lavorati con cura</h3><p>Ogni occhiale viene rifinito e regolato con attenzione ai dettagli.</p></article>
+          <article class="point reveal"><h3>Materiali di qualità</h3><p>Scelti per essere comodi, leggeri e resistenti.</p></article>
+          <article class="point reveal"><h3>Fatti per durare</h3><p>Un occhiale che tiene la forma e ti accompagna per anni.</p></article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section id="servizi">
+    <div class="wrap">
+      <p class="eyebrow">Servizi</p>
+      <h2>Tutto quello che serve per i tuoi occhi</h2>
+      <p class="lead">Dalla visita agli occhiali, fino alla cura di tutti i giorni.</p>
+      <div class="services">
+        <article class="svc reveal"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2" /> <path d="M17 3h2a2 2 0 0 1 2 2v2" /> <path d="M21 17v2a2 2 0 0 1-2 2h-2" /> <path d="M7 21H5a2 2 0 0 1-2-2v-2" /> <circle cx="12" cy="12" r="1" /> <path d="M18.944 12.33a1 1 0 0 0 0-.66 7.5 7.5 0 0 0-13.888 0 1 1 0 0 0 0 .66 7.5 7.5 0 0 0 13.888 0" /></svg></span><h3>Misurazione della vista</h3><p>Esami optometrici, preferibilmente su appuntamento, anche a domicilio.</p></article>
+        <article class="svc reveal"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="15" r="4" /> <circle cx="18" cy="15" r="4" /> <path d="M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2" /> <path d="M2.5 13 5 7c.7-1.3 1.4-2 3-2" /> <path d="M21.5 13 19 7c-.7-1.3-1.5-2-3-2" /></svg></span><h3>Occhiali da vista e su misura</h3><p>Modelli, marchi, stili, colori e montature.</p></article>
+        <article class="svc reveal"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1" /> <circle cx="12" cy="12" r="10" /></svg></span><h3>Lenti a contatto e lenti per occhiali</h3><p>Per ogni esigenza di vista, con assistenza alla prima applicazione.</p></article>
+        <article class="svc reveal"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /> <path d="M12 2v2" /> <path d="M12 20v2" /> <path d="m4.93 4.93 1.41 1.41" /> <path d="m17.66 17.66 1.41 1.41" /> <path d="M2 12h2" /> <path d="M20 12h2" /> <path d="m6.34 17.66-1.41 1.41" /> <path d="m19.07 4.93-1.41 1.41" /></svg></span><h3>Occhiali da sole</h3><p>Anche con lenti graduate, se ti servono.</p></article>
+        <article class="svc reveal"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5" /> <path d="M15 12h.01" /> <path d="M19.38 6.813A9 9 0 0 1 20.8 10.2a2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1" /> <path d="M9 12h.01" /></svg></span><h3>Linea per bambini</h3><p>Montature pensate per i più piccoli.</p></article>
+        <article class="svc reveal"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" /></svg></span><h3>Assistenza e manutenzione</h3><p>Riparazioni, pulizia e sistemazione delle montature.</p></article>
+        <article class="svc reveal"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h.01" /> <path d="M7 5h.01" /> <path d="M11 7h.01" /> <path d="M3 7h.01" /> <path d="M7 9h.01" /> <path d="M3 11h.01" /> <rect width="4" height="4" x="15" y="5" /> <path d="m19 9 2 2v10c0 .6-.4 1-1 1h-6c-.6 0-1-.4-1-1V11l2-2" /> <path d="m13 14 8-2" /> <path d="m13 19 8-2" /></svg></span><h3>Prodotti per la pulizia</h3><p>Per prenderti cura dei tuoi occhiali e delle lenti.</p></article>
+        <article class="svc reveal"><span class="svc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 19a4 4 0 00-8 0" /> <path d="M16 10h2" /> <path d="M16 14h2" /> <circle cx="9" cy="12" r="3" /> <rect x="2" y="5" width="20" height="14" rx="2" /></svg></span><h3>Foto tessere</h3><p>Per i documenti, fatte in negozio.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <div class="brands-band">
+    <section id="marchi">
+      <div class="wrap">
+        <p class="eyebrow">I marchi</p>
+        <h2>Le marche che trovi da noi</h2>
+        <p class="lead">Accanto agli occhiali fatti a mano, trovi anche i marchi più conosciuti.</p>
+        <div class="brand-group">
+          <h3>Montature e occhiali da sole</h3>
+          <div class="brands">
+            <div class="brand reveal"><img src="marchi/ray-ban.svg" style="width:52%" alt="Ray-Ban" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/prada.svg" style="width:86%" alt="Prada" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/persol.svg" style="width:50%" alt="Persol" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/oakley.svg" style="width:78%" alt="Oakley" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/tiffany.svg" style="width:86%" alt="Tiffany &amp; Co." loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/dolce-gabbana.svg" style="width:86%" alt="Dolce &amp; Gabbana" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/calvin-klein.svg" style="width:86%" alt="Calvin Klein" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/furla.svg" style="width:83%" alt="Furla" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/vogue.svg" style="width:81%" alt="Vogue Eyewear" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/polar.png" style="width:86%" alt="Polar" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/look.png" style="width:66%" alt="LOOK Made in Italy" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/swissflex.png" style="width:86%" alt="Swissflex Eyewear" loading="lazy"></div>
+          </div>
+        </div>
+        <div class="brand-group">
+          <h3>Lenti</h3>
+          <div class="brands">
+            <div class="brand reveal"><img src="marchi/zeiss.png" style="width:37%" alt="Zeiss" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/hoya.svg" style="width:76%" alt="Hoya" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/rodenstock.svg" style="width:56%" alt="Rodenstock" loading="lazy"></div>
+            <div class="brand reveal"><img src="marchi/shamir.png" style="width:74%" alt="Shamir" loading="lazy"></div>
+          </div>
+        </div>
+        <p class="brands-note">E molte altre: chiedi in negozio.</p>
+      </div>
+    </section>
+  </div>
+
+  <section id="recensioni">
+    <div class="wrap">
+      <p class="eyebrow">Dicono di noi</p>
+      <h2>Cosa dicono i clienti</h2>
+      <div class="reviews">
+        <article class="review reveal">
+          <p>Ho svolto, nel loro negozio pochi giorni fa, un workshop dedicato all'armocromia e alla scelta dell'occhiale più valorizzante. Tutto lo staff è estremamente gentile con i suoi clienti e attento ad ogni esigenza. […] un negozio accogliente che mi ha fatto sentire a casa per tutto il tempo.</p>
+          <span class="who">Maria Azzurra B.</span>
+        </article>
+        <article class="review reveal">
+          <p>Miglior ottica della zona. Proprietari gentilissimi, attenti ad ogni esigenza, dal prezzo ai modelli di occhiali, alle visite anche per i bambini e alla stampa delle foto. Ormai il mio ottico di fiducia.</p>
+          <span class="who">Laura I.</span>
+        </article>
+        <article class="review reveal">
+          <p>Esperienza più che positiva. Professionalità e gentilezza garantiti. Consiglio vivamente!</p>
+          <span class="who">Michela V.</span>
+        </article>
+      </div>
+      <p class="reviews-link"><a href="https://maps.app.goo.gl/zso1Jv4mqe66kj2p8" target="_blank" rel="noopener">Leggi tutte le recensioni su Google</a></p>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <div>
+        <h2>Passa a trovarci</h2>
+        <p>Ti guardiamo, ti ascoltiamo e troviamo l'occhiale giusto per te. Per la misurazione della vista ti consigliamo di prendere appuntamento.</p>
+      </div>
+      <div class="cta" style="margin:0">
+        <a class="btn light" href="tel:+39065593477">Chiama ora</a>
+        <a class="btn outline-light" href="https://maps.app.goo.gl/zso1Jv4mqe66kj2p8" target="_blank" rel="noopener">Come arrivare</a>
+      </div>
+    </div>
+  </div>
+
+  <section id="contatti">
+    <div class="wrap">
+      <p class="eyebrow">Dove siamo</p>
+      <h2>Contatti</h2>
+      <div class="contact">
+        <dl class="info">
+          <div><dt>Indirizzo</dt><dd>Via Giovanni Volpato, 29<br>00146 Roma RM</dd></div>
+          <div><dt>Telefono</dt><dd><a href="tel:+39065593477">06 55 93 477</a> · cell. <a href="tel:+393297218091">329 721 8091</a></dd></div>
+          <div><dt>Email</dt><dd>otticadigiammarco@libero.it</dd></div>
+          <div>
+            <dt>Orari</dt>
+            <dd>
+              <table class="hours">
+                <tbody>
+                  <tr data-d="1"><th scope="row">Lunedì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
+                  <tr data-d="2"><th scope="row">Martedì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
+                  <tr data-d="3"><th scope="row">Mercoledì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
+                  <tr data-d="4"><th scope="row">Giovedì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
+                  <tr data-d="5"><th scope="row">Venerdì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
+                  <tr data-d="6"><th scope="row">Sabato</th><td>9:30–13:00</td></tr>
+                  <tr data-d="0"><th scope="row">Domenica</th><td>Chiuso</td></tr>
+                </tbody>
+              </table>
+              <p class="status in-contact" data-status role="status"><span class="dot"></span><span data-label>Orari del negozio</span></p>
+              <p class="hours-note">Nei giorni festivi gli orari possono cambiare: in caso di dubbio chiamaci.</p>
+            </dd>
+          </div>
+        </dl>
+        <form id="f" novalidate>
+          <h3>Scrivici una richiesta</h3>
+          <label for="n">Nome e cognome<input id="n" type="text" autocomplete="name"></label>
+          <label for="t">Telefono<input id="t" type="tel" autocomplete="tel"></label>
+          <label for="e">Email<input id="e" type="email" autocomplete="email"></label>
+          <label for="m">Cosa ti serve?<textarea id="m"></textarea></label>
+          <label class="check" for="p"><input id="p" type="checkbox"><span>Ho letto l'informativa privacy e acconsento al trattamento dei dati per essere ricontattato.</span></label>
+          <button class="btn primary" type="submit">Invia richiesta</button>
+          <p id="msg" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Ottica Di Giammarco · Via Giovanni Volpato 29, 00146 Roma · P.IVA da inserire</span>
+    <span>Informativa privacy · Bozza</span>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a class="btn primary" href="tel:+39065593477">Chiama</a>
+  <a class="btn ghost" href="https://maps.app.goo.gl/zso1Jv4mqe66kj2p8" target="_blank" rel="noopener">Come arrivare</a>
+</div>
+
+<script>
+  document.getElementById('f').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var msg = document.getElementById('msg');
+    if (!document.getElementById('p').checked) { msg.textContent = 'Per inviare la richiesta devi acconsentire al trattamento dei dati.'; return; }
+    msg.textContent = 'Bozza: l’invio diretto sarà attivo quando il sito viene pubblicato.';
+  });
+
+  /* Orari: 0 = domenica. Fasce in minuti dalla mezzanotte. */
+  var M = 60, MATT = [9 * M + 30, 13 * M], POM = [16 * M, 19 * M + 30];
+  var ORARI = { 0: [], 1: [MATT, POM], 2: [MATT, POM], 3: [MATT, POM], 4: [MATT, POM], 5: [MATT, POM], 6: [MATT] };
+  var WD = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+  var romeFmt = null;
+  try { romeFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Rome', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false }); } catch (err) { romeFmt = null; }
+  function oraRoma() {
+    if (romeFmt) {
+      try {
+        var p = {};
+        romeFmt.formatToParts(new Date()).forEach(function (x) { p[x.type] = x.value; });
+        return { d: WD[p.weekday], m: (parseInt(p.hour, 10) % 24) * 60 + parseInt(p.minute, 10) };
+      } catch (err) { /* ora del dispositivo */ }
+    }
+    var n = new Date();
+    return { d: n.getDay(), m: n.getHours() * 60 + n.getMinutes() };
+  }
+  var boxes = document.querySelectorAll('[data-status]'), righe = document.querySelectorAll('.hours tr'), giorno = -1;
+  function aggiorna() {
+    var t = oraRoma(), aperto = false;
+    ORARI[t.d].forEach(function (f) { if (t.m >= f[0] && t.m < f[1]) { aperto = true; } });
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].classList.toggle('is-open', aperto);
+      boxes[i].classList.toggle('is-closed', !aperto);
+      boxes[i].querySelector('[data-label]').textContent = aperto ? 'Aperto ora' : 'Chiuso ora';
+    }
+    if (t.d !== giorno) {
+      giorno = t.d;
+      for (var j = 0; j < righe.length; j++) { righe[j].classList.toggle('today', righe[j].getAttribute('data-d') === String(t.d)); }
+    }
+  }
+  aggiorna();
+  setInterval(aggiorna, 30000);
+
+  var motoOk = !window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var haIO = 'IntersectionObserver' in window;
+
+  /* numeri animati */
+  function animaNumero(el) {
+    var fine = parseInt(el.getAttribute('data-count-to'), 10), suf = el.getAttribute('data-suffix') || '';
+    if (!fine) { return; }
+    var durata = 1300, inizio = null;
+    el.textContent = '0' + suf;
+    function passo(ts) {
+      if (inizio === null) { inizio = ts; }
+      var p = Math.min((ts - inizio) / durata, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(fine * e) + suf;
+      if (p < 1) { requestAnimationFrame(passo); } else { el.textContent = fine + suf; }
+    }
+    requestAnimationFrame(passo);
+  }
+  var numeri = document.querySelectorAll('[data-count-to]');
+  if (numeri.length && motoOk && haIO) {
+    var io = new IntersectionObserver(function (v) {
+      v.forEach(function (x) { if (x.isIntersecting) { io.unobserve(x.target); animaNumero(x.target); } });
+    }, { threshold: 0.5 });
+    for (var k = 0; k < numeri.length; k++) { io.observe(numeri[k]); }
+  }
+
+  /* comparsa delle card durante lo scorrimento */
+  var cards = document.querySelectorAll('.reveal');
+  if (cards.length && motoOk && haIO) {
+    document.body.classList.add('reveal-on');
+    var ro = new IntersectionObserver(function (v) {
+      v.forEach(function (x) {
+        if (!x.isIntersecting) { return; }
+        ro.unobserve(x.target);
+        var i = parseInt(x.target.getAttribute('data-i'), 10) || 0;
+        x.target.style.transitionDelay = (i % 4) * 70 + 'ms';
+        x.target.classList.add('in');
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+    for (var r = 0; r < cards.length; r++) { cards[r].setAttribute('data-i', r); ro.observe(cards[r]); }
+    setTimeout(function () { for (var q = 0; q < cards.length; q++) { cards[q].classList.add('in'); } }, 2500);
+  }
+
+  var hd = document.getElementById('hd');
+  function onScroll() { hd.classList.toggle('stuck', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+</body>
+</html>
