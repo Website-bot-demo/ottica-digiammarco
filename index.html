@@ -14,9 +14,14 @@
   :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 </style>
 <title>Ottica Di Giammarco</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+  @font-face { font-family: "Instrument Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/instrument-serif-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: swap; src: url("fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); }
+  @font-face { font-family: "Figtree"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/figtree-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Figtree"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/figtree-latin-500-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Figtree"; font-style: normal; font-weight: 600; font-display: swap; src: url("fonts/figtree-latin-600-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Figtree"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/figtree-latin-700-normal.woff2") format("woff2"); }
+</style>
 <style>
   /* Layout: ottica di famiglia, blu notte del logo su bianco, titoli serif come un'insegna d'altri tempi. */
   :root {
@@ -280,7 +285,7 @@
 
 </head>
 <body>
-<div class="draft">Bozza di lavoro: la partita IVA è ancora provvisoria.</div>
+<div class="draft">Bozza di lavoro: il modulo contatti è in attivazione.</div>
 
 <header id="hd">
   <div class="wrap">
@@ -466,7 +471,7 @@
           <label for="t">Telefono<input id="t" type="tel" autocomplete="tel"></label>
           <label for="e">Email<input id="e" type="email" autocomplete="email"></label>
           <label for="m">Cosa ti serve?<textarea id="m"></textarea></label>
-          <label class="check" for="p"><input id="p" type="checkbox"><span>Ho letto l'informativa privacy e acconsento al trattamento dei dati per essere ricontattato.</span></label>
+          <label class="check" for="p"><input id="p" type="checkbox"><span>Ho letto l'<a href="privacy.html">informativa privacy</a> e chiedo di essere ricontattato.</span></label>
           <button class="btn primary" type="submit">Invia richiesta</button>
           <p id="msg" role="status"></p>
         </form>
@@ -477,8 +482,8 @@
 
 <footer>
   <div class="wrap">
-    <span>Ottica Di Giammarco · Via Giovanni Volpato 29, 00146 Roma · P.IVA da inserire</span>
-    <span>Informativa privacy · Bozza</span>
+    <span>Ottica Foto Cine Di Giammarco Roberto · Via Giovanni Volpato 29, 00146 Roma · P.IVA 08674900587</span>
+    <span><a href="privacy.html">Informativa privacy</a></span>
   </div>
 </footer>
 
