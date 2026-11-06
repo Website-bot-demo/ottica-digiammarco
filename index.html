@@ -171,6 +171,7 @@
   }
   .brand span { font-family: var(--display); font-size: clamp(22px, 2.4vw, 30px); color: var(--navy); line-height: 1.05; }
   .brand img { display: block; height: auto; max-height: 80%; object-fit: contain; }
+  .brands-3 { grid-template-columns: repeat(3, 1fr); max-width: 75%; margin-inline: auto; }
   .brands-note { color: var(--muted); margin: 22px 0 0; font-size: 15.5px; text-align: center; }
 
   /* recensioni */
@@ -226,6 +227,8 @@
   @media (max-width: 960px) {
     .about, .contact { grid-template-columns: 1fr; }
     .services, .brands { grid-template-columns: repeat(2, 1fr); }
+    .brands-3 { max-width: none; }
+    .brands-3 .brand:last-child { grid-column: 1 / -1; justify-self: center; width: calc(50% - 7px); }
     .points, .reviews { grid-template-columns: 1fr; }
     .family img { aspect-ratio: 1 / 1.1; }
     section { padding-block: 54px; }
@@ -340,10 +343,10 @@
   <div class="hand-band">
     <section>
       <div class="wrap">
-        <h2>Occhiali fatti a mano, non prodotti in serie</h2>
-        <p class="lead">Un occhiale fatto a mano è lavorato con cura, con materiali di qualità e su misura per te: la differenza si nota nel tempo, su viso, naso e occhi.</p>
+        <h2>Occhiali su misura, non prodotti in serie</h2>
+        <p class="lead">Un occhiale su misura è scelto e regolato per te, con materiali di qualità: la differenza si nota nel tempo, su viso, naso e occhi.</p>
         <div class="points">
-          <article class="point reveal"><h3>Lavorati con cura</h3><p>Ogni occhiale viene rifinito e regolato con attenzione ai dettagli.</p></article>
+          <article class="point reveal"><h3>Regolati con cura</h3><p>Ogni occhiale viene scelto e regolato su di te, con attenzione ai dettagli.</p></article>
           <article class="point reveal"><h3>Materiali di qualità</h3><p>Scelti per essere comodi, leggeri e resistenti.</p></article>
           <article class="point reveal"><h3>Fatti per durare</h3><p>Un occhiale che tiene la forma e ti accompagna per anni.</p></article>
         </div>
@@ -372,7 +375,6 @@
     <section id="marchi">
       <div class="wrap">
         <h2>I marchi</h2>
-        <p class="lead">Accanto agli occhiali fatti a mano, trovi anche i marchi più conosciuti.</p>
         <div class="brand-group">
           <h3>Montature e occhiali da sole</h3>
           <div class="brands">
@@ -392,11 +394,10 @@
         </div>
         <div class="brand-group">
           <h3>Lenti</h3>
-          <div class="brands">
+          <div class="brands brands-3">
             <div class="brand reveal"><img src="marchi/zeiss.png" style="width:37%" alt="Zeiss" loading="lazy"></div>
-            <div class="brand reveal"><img src="marchi/hoya.svg" style="width:76%" alt="Hoya" loading="lazy"></div>
-            <div class="brand reveal"><img src="marchi/rodenstock.svg" style="width:56%" alt="Rodenstock" loading="lazy"></div>
             <div class="brand reveal"><img src="marchi/shamir.png" style="width:74%" alt="Shamir" loading="lazy"></div>
+            <div class="brand reveal"><span>Transitions</span></div>
           </div>
         </div>
         <p class="brands-note">E molte altre: chiedi in negozio.</p>
