@@ -195,22 +195,6 @@
   @media (prefers-reduced-motion: reduce) { .promo, .promo-card, .scratch-cover { transition: none; } }
   .brands-note { color: var(--muted); margin: 22px 0 0; font-size: 15.5px; text-align: center; }
 
-  /* controllo della vista del mese */
-  .visita { padding-block: 8px 0; }
-  .visita-box { position: relative; overflow: hidden; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px; padding: 34px 40px; border-radius: 22px; color: #fff; background: linear-gradient(135deg, #131c40, var(--navy) 70%, var(--navy-soft)); box-shadow: 0 22px 48px rgba(29, 42, 92, .22); }
-  .visita-box::after { content: ""; position: absolute; right: -60px; top: -80px; width: 260px; height: 260px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .14); box-shadow: 0 0 0 38px rgba(255, 255, 255, .04); pointer-events: none; }
-  .visita-ico { width: 76px; height: 76px; border-radius: 50%; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .22); display: flex; align-items: center; justify-content: center; }
-  .visita-ico svg { width: 38px; height: 38px; }
-  .visita-mese { margin: 0 0 6px; font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(255, 255, 255, .72); }
-  .visita-box h2 { color: #fff; font-size: clamp(30px, 4.2vw, 44px); }
-  .visita-box p.testo { margin: 10px 0 0; color: rgba(255, 255, 255, .82); font-size: 17px; max-width: 46ch; }
-  .visita-cta { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; min-width: 230px; }
-  @media (max-width: 960px) {
-    .visita-box { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: 34px 24px; gap: 20px; }
-    .visita-box p.testo { margin-inline: auto; }
-    .visita-cta { width: 100%; max-width: 340px; }
-  }
-
   /* recensioni */
   .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 38px; }
   .review {
@@ -367,23 +351,6 @@
         <a class="btn ghost" href="https://maps.app.goo.gl/zso1Jv4mqe66kj2p8" target="_blank" rel="noopener">Come arrivare</a>
       </div>
       <span class="zeiss">Centro Ottico Zeiss</span>
-    </div>
-  </section>
-
-  <section class="visita" id="controllo">
-    <div class="wrap">
-      <div class="visita-box">
-        <span class="visita-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3.2"/></svg></span>
-        <div>
-          <p class="visita-mese">Novembre</p>
-          <h2>Controllo della vista gratuito</h2>
-          <p class="testo">Su prenotazione, per tutto il mese. Chiamaci o scrivici e fissiamo insieme il giorno e l’orario che preferisci.</p>
-        </div>
-        <div class="visita-cta">
-          <a class="btn light" href="tel:+39065593477">Prenota: 06 55 93 477</a>
-          <a class="btn outline-light" href="#contatti">Oppure scrivici</a>
-        </div>
-      </div>
     </div>
   </section>
 
