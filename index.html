@@ -172,6 +172,17 @@
   .brand span { font-family: var(--display); font-size: clamp(22px, 2.4vw, 30px); color: var(--navy); line-height: 1.05; }
   .brand img { display: block; height: auto; max-height: 80%; object-fit: contain; }
   .brands-3 { grid-template-columns: repeat(3, 1fr); max-width: 75%; margin-inline: auto; }
+  /* avviso del mese */
+  .promo { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(20, 27, 51, .45); opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s; }
+  .promo.open { opacity: 1; visibility: visible; }
+  .promo-card { position: relative; width: min(440px, 100%); background: #fff; border-radius: 20px; padding: 48px 32px 40px; text-align: center; box-shadow: 0 24px 60px rgba(20, 27, 51, .25); transform: translateY(14px); transition: transform .3s ease; }
+  .promo.open .promo-card { transform: none; }
+  .promo-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--navy); font-size: 30px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .promo-close:hover { background: var(--tint); }
+  .promo-close:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+  .promo-month { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+  .promo-card h2 { font-size: clamp(32px, 7vw, 42px); }
+  @media (prefers-reduced-motion: reduce) { .promo, .promo-card { transition: none; } }
   .brands-note { color: var(--muted); margin: 22px 0 0; font-size: 15.5px; text-align: center; }
 
   /* recensioni */
@@ -288,6 +299,13 @@
 
 </head>
 <body>
+<div class="promo" id="promo" role="dialog" aria-modal="true" aria-labelledby="promo-title" aria-hidden="true">
+  <div class="promo-card">
+    <button type="button" class="promo-close" id="promo-close" aria-label="Chiudi">&times;</button>
+    <p class="promo-month" id="promo-month">Novembre</p>
+    <h2 id="promo-title">Offerta speciale per gli occhiali</h2>
+  </div>
+</div>
 <div class="draft">Bozza di lavoro: il modulo contatti è in attivazione.</div>
 
 <header id="hd">
@@ -583,5 +601,35 @@
   window.addEventListener('scroll', onScroll, { passive: true });
 </script>
 
+<script>
+/* Avviso del mese: per cambiarlo modifica il testo qui sopra e la data di scadenza qui sotto */
+(function () {
+  var PROMO_FINO_AL = '2026-11-30';
+  var promo = document.getElementById('promo');
+  var chiudi = document.getElementById('promo-close');
+  if (!promo || !chiudi) return;
+  if (new Date() > new Date(PROMO_FINO_AL + 'T23:59:59')) return;
+  try { if (sessionStorage.getItem('promo-chiuso')) return; } catch (e) {}
+  var prima = null;
+  function apri() {
+    prima = document.activeElement;
+    promo.classList.add('open'); promo.setAttribute('aria-hidden', 'false');
+    chiudi.focus();
+  }
+  function chiudiPromo() {
+    promo.classList.remove('open'); promo.setAttribute('aria-hidden', 'true');
+    try { sessionStorage.setItem('promo-chiuso', '1'); } catch (e) {}
+    if (prima && prima.focus) prima.focus();
+  }
+  chiudi.addEventListener('click', chiudiPromo);
+  promo.addEventListener('click', function (e) { if (e.target === promo) chiudiPromo(); });
+  document.addEventListener('keydown', function (e) {
+    if (!promo.classList.contains('open')) return;
+    if (e.key === 'Escape') chiudiPromo();
+    if (e.key === 'Tab') { e.preventDefault(); chiudi.focus(); }
+  });
+  setTimeout(apri, 1500);
+})();
+</script>
 </body>
 </html>
