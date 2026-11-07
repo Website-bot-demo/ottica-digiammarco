@@ -182,11 +182,28 @@
   .promo-close:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
   .promo-month { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
   .promo-card h2 { font-size: clamp(32px, 7vw, 42px); }
-  .scratch { position: relative; height: 190px; margin-top: 4px; border-radius: 14px; overflow: hidden; background: var(--tint); border: 1px solid var(--line); }
+  .scratch { position: relative; height: 300px; margin-top: 4px; border-radius: 16px; overflow: hidden; background: radial-gradient(120% 70% at 50% 0%, rgba(255, 255, 255, .26), transparent 62%), linear-gradient(150deg, #131c40, var(--navy) 62%, var(--navy-soft)); box-shadow: 0 14px 34px rgba(29, 42, 92, .28); }
   .scratch-prize { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 0 18px; }
   .scratch-cover { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: pointer; transition: opacity .5s ease; }
-  .scratch-prize h2 { font-size: clamp(28px, 6.4vw, 36px); }
-  .scratch-text { margin: 10px 0 0; color: var(--muted); font-size: 15.5px; line-height: 1.45; }
+  .prize-in { position: relative; z-index: 1; text-align: center; }
+  .prize-logo { display: block; width: 104px; margin: 0 auto 16px; padding: 7px 12px; background: #fff; border-radius: 16px; box-shadow: 0 0 0 4px rgba(255, 255, 255, .16), 0 0 34px rgba(255, 224, 150, .55); }
+  .prize-logo img { display: block; width: 100%; height: auto; }
+  .scratch-prize h2 { color: #fff; font-size: clamp(30px, 7vw, 38px); }
+  .scratch-prize h2 em { display: block; font-style: italic; color: #f0cf86; }
+  .scratch-text { margin: 12px auto 0; color: rgba(255, 255, 255, .84); font-size: 15.5px; line-height: 1.45; max-width: 30ch; }
+  .spark { position: absolute; z-index: 1; width: 14px; height: 14px; background: #fff3cf; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); opacity: 0; }
+  .spark.s1 { left: 12%; top: 16%; } .spark.s2 { right: 12%; top: 12%; width: 20px; height: 20px; } .spark.s3 { left: 8%; bottom: 24%; width: 10px; height: 10px; } .spark.s4 { right: 9%; bottom: 20%; } .spark.s5 { left: 50%; bottom: 7%; width: 9px; height: 9px; }
+  .shine { position: absolute; top: 0; bottom: 0; left: -40%; width: 30%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .28), transparent); transform: skewX(-18deg); opacity: 0; }
+  .scratch.done .spark { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    .scratch.done .spark { animation: brilla 2.4s ease-in-out infinite; }
+    .scratch.done .spark.s2 { animation-delay: .5s; } .scratch.done .spark.s3 { animation-delay: 1s; } .scratch.done .spark.s4 { animation-delay: 1.5s; } .scratch.done .spark.s5 { animation-delay: .8s; }
+    .scratch.done .shine { animation: luce 1.4s .35s ease-out 1 both; }
+    .scratch.done .prize-in { animation: appari .6s ease-out both; }
+    @keyframes brilla { 0%, 100% { opacity: .25; transform: scale(.7) rotate(0); } 50% { opacity: 1; transform: scale(1.15) rotate(20deg); } }
+    @keyframes luce { 0% { left: -40%; opacity: 1; } 100% { left: 130%; opacity: 1; } }
+    @keyframes appari { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+  }
   .scratch.done .scratch-cover { opacity: 0; pointer-events: none; }
   .scratch-skip { margin-top: 16px; border: 0; background: none; color: var(--muted); font: inherit; font-size: 14.5px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 8px 10px; }
   .promo-cta { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
@@ -316,7 +333,15 @@
     <button type="button" class="promo-close" id="promo-close" aria-label="Chiudi">&times;</button>
     <p class="promo-month" id="promo-month">Novembre</p>
     <div class="scratch" id="scratch">
-      <div class="scratch-prize"><div><h2 id="promo-title">Controllo della vista gratuito</h2><p class="scratch-text">Su prenotazione, per tutto il mese. Chiamaci o scrivici e fissiamo giorno e orario.</p></div></div>
+      <div class="scratch-prize">
+        <i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i><i class="spark s4"></i><i class="spark s5"></i>
+        <span class="shine"></span>
+        <div class="prize-in">
+          <span class="prize-logo"><img src="img/logo.png" alt="Ottica Di Giammarco" width="388" height="232"></span>
+          <h2 id="promo-title">Controllo della vista <em>gratuito</em></h2>
+          <p class="scratch-text">Su prenotazione, per tutto il mese. Chiamaci o scrivici e fissiamo giorno e orario.</p>
+        </div>
+      </div>
       <canvas class="scratch-cover" id="scratch-cover" aria-hidden="true"></canvas>
     </div>
     <button type="button" class="scratch-skip" id="scratch-skip">Scopri subito</button>
@@ -680,8 +705,8 @@
     var r = cover.getBoundingClientRect();
     var x = e.clientX - r.left, y = e.clientY - r.top;
     ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath(); ctx.arc(x, y, 24, 0, Math.PI * 2); ctx.fill();
-    if (++mosse % 6 === 0 && percentuale() > .5) scopri();
+    ctx.beginPath(); ctx.arc(x, y, 28, 0, Math.PI * 2); ctx.fill();
+    if (++mosse % 6 === 0 && percentuale() > .4) scopri();
   }
 
   cover.addEventListener('pointerdown', function (e) { grattando = true; cover.setPointerCapture(e.pointerId); gratta(e); });
