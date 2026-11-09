@@ -182,7 +182,7 @@
   .promo-close:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
   .promo-month { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
   .promo-card h2 { font-size: clamp(32px, 7vw, 42px); }
-  .scratch { position: relative; height: 316px; margin-top: 4px; border-radius: 16px; overflow: hidden; background: radial-gradient(120% 70% at 50% 0%, rgba(255, 255, 255, .26), transparent 62%), linear-gradient(150deg, #131c40, var(--navy) 62%, var(--navy-soft)); box-shadow: 0 14px 34px rgba(29, 42, 92, .28); }
+  .scratch { position: relative; height: 316px; margin-top: 4px; border-radius: 6px; overflow: hidden; background: radial-gradient(120% 70% at 50% 0%, rgba(255, 255, 255, .26), transparent 62%), linear-gradient(150deg, #131c40, var(--navy) 62%, var(--navy-soft)); box-shadow: 0 14px 34px rgba(29, 42, 92, .28); }
   .scratch-prize { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding: 100px 18px 22px; }
   .scratch-cover { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: pointer; transition: opacity .5s ease; }
   .prize-in { text-align: center; }
@@ -204,6 +204,21 @@
     @keyframes luce { 0% { left: -40%; opacity: 1; } 100% { left: 130%; opacity: 1; } }
     @keyframes appari { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
   }
+  .scratch-cover { cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34'><circle cx='17' cy='17' r='14' fill='%23d9b45f' stroke='%238a6a24' stroke-width='2'/><circle cx='17' cy='17' r='8' fill='none' stroke='%238a6a24' stroke-width='1.5'/></svg>") 17 17, pointer; }
+  .scratch-hint { position: absolute; z-index: 3; left: 0; top: 0; width: 46px; height: 46px; pointer-events: none; filter: drop-shadow(0 3px 5px rgba(20, 27, 51, .35)); opacity: 0; }
+  .scratch-hint svg { display: block; width: 100%; height: 100%; }
+  .scratch.toccato .scratch-hint, .scratch.done .scratch-hint { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .scratch-hint { opacity: 1; animation: mano 3.4s ease-in-out 1.2s infinite; }
+    @keyframes mano {
+      0% { left: 18%; top: 74%; transform: rotate(-12deg); }
+      25% { left: 66%; top: 74%; transform: rotate(8deg); }
+      50% { left: 20%; top: 84%; transform: rotate(-12deg); }
+      75% { left: 66%; top: 84%; transform: rotate(8deg); }
+      100% { left: 18%; top: 74%; transform: rotate(-12deg); }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) { .scratch-hint { opacity: 1; left: 50%; top: 76%; margin-left: -23px; } }
   .scratch.done .scratch-cover { opacity: 0; pointer-events: none; }
   .scratch-skip { margin-top: 16px; border: 0; background: none; color: var(--muted); font: inherit; font-size: 14.5px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 8px 10px; }
   .promo-cta { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
@@ -343,6 +358,7 @@
       </div>
       <canvas class="scratch-cover" id="scratch-cover" aria-hidden="true"></canvas>
       <span class="prize-logo"><img src="img/logo.png" alt="Ottica Di Giammarco" width="388" height="232"></span>
+      <span class="scratch-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff" stroke="#1d2a5c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V10a2 2 0 0 0-4 0v-1a2 2 0 0 0-4 0v-5a2 2 0 0 0-4 0v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></span>
     </div>
     <button type="button" class="scratch-skip" id="scratch-skip">Scopri subito</button>
     <div class="promo-cta" id="promo-cta" hidden>
@@ -674,20 +690,22 @@
     var g = ctx.createLinearGradient(0, 0, w, h);
     g.addColorStop(0, '#c9ced9'); g.addColorStop(.5, '#e7eaf1'); g.addColorStop(1, '#b9bfcd');
     ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = 'rgba(255, 255, 255, .35)'; ctx.lineWidth = 1;
+    for (var k = -h; k < w; k += 9) { ctx.beginPath(); ctx.moveTo(k, h); ctx.lineTo(k + h, 0); ctx.stroke(); }
     ctx.fillStyle = 'rgba(29, 42, 92, .07)';
     for (var i = 0; i < 260; i++) ctx.fillRect(Math.random() * w, Math.random() * h, 2, 2);
+    ctx.strokeStyle = 'rgba(255, 255, 255, .85)'; ctx.lineWidth = 3; ctx.strokeRect(1.5, 1.5, w - 3, h - 3);
+    ctx.strokeStyle = 'rgba(29, 42, 92, .25)'; ctx.lineWidth = 1; ctx.strokeRect(5.5, 5.5, w - 11, h - 11);
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillStyle = '#1d2a5c';
-    ctx.font = '400 30px "Instrument Serif", Georgia, serif';
-    ctx.fillText('C’è una sorpresa', w / 2, h * 0.5);
-    ctx.fillText('per te', w / 2, h * 0.5 + 34);
-    var pw = 150, ph = 40, px = (w - pw) / 2, py = h * 0.5 + 66;
-    ctx.fillStyle = '#1d2a5c';
-    ctx.beginPath();
-    if (ctx.roundRect) ctx.roundRect(px, py, pw, ph, 20); else ctx.rect(px, py, pw, ph);
-    ctx.fill();
-    ctx.fillStyle = '#ffffff'; ctx.font = '600 16px Figtree, system-ui, sans-serif';
-    ctx.fillText('Gratta qui', w / 2, py + ph / 2 + 1);
+    ctx.font = '400 29px "Instrument Serif", Georgia, serif';
+    ctx.fillText('C’è una sorpresa', w / 2, h * 0.43);
+    ctx.fillText('per te', w / 2, h * 0.43 + 32);
+    ctx.font = '700 13px Figtree, system-ui, sans-serif';
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '2px';
+    ctx.fillStyle = '#3a4a85';
+    ctx.fillText('GRATTA CON IL DITO', w / 2, h * 0.43 + 72);
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
   }
 
   function scopri() {
@@ -715,7 +733,7 @@
     if (++mosse % 6 === 0 && percentuale() > .4) scopri();
   }
 
-  cover.addEventListener('pointerdown', function (e) { grattando = true; cover.setPointerCapture(e.pointerId); gratta(e); });
+  cover.addEventListener('pointerdown', function (e) { grattando = true; box.classList.add('toccato'); cover.setPointerCapture(e.pointerId); gratta(e); });
   cover.addEventListener('pointermove', function (e) { if (grattando && !finito) gratta(e); });
   cover.addEventListener('pointerup', function () { grattando = false; });
   cover.addEventListener('pointercancel', function () { grattando = false; });
