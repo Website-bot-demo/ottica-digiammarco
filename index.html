@@ -547,10 +547,14 @@
         </dl>
         <form id="f" novalidate>
           <h3>Scrivici una richiesta</h3>
-          <label for="n">Nome e cognome<input id="n" type="text" autocomplete="name"></label>
-          <label for="t">Telefono<input id="t" type="tel" autocomplete="tel"></label>
-          <label for="e">Email<input id="e" type="email" autocomplete="email"></label>
-          <label for="m">Cosa ti serve?<textarea id="m"></textarea></label>
+          <input type="hidden" name="access_key" value="f8012d0d-c5f0-4e15-b7c3-a95ae359d6a2">
+          <input type="hidden" name="subject" value="Richiesta dal sito – Ottica Di Giammarco">
+          <input type="hidden" name="from_name" value="Sito Ottica Di Giammarco">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+          <label for="n">Nome e cognome<input id="n" name="nome" type="text" autocomplete="name" required></label>
+          <label for="t">Telefono<input id="t" name="telefono" type="tel" autocomplete="tel"></label>
+          <label for="e">Email<input id="e" name="email" type="email" autocomplete="email"></label>
+          <label for="m">Cosa ti serve?<textarea id="m" name="messaggio" required></textarea></label>
           <label class="check" for="p"><input id="p" type="checkbox"><span>Ho letto l'<a href="privacy.html">informativa privacy</a> e chiedo di essere ricontattato.</span></label>
           <button class="btn primary" type="submit">Invia richiesta</button>
           <p id="msg" role="status"></p>
@@ -577,7 +581,32 @@
     ev.preventDefault();
     var msg = document.getElementById('msg');
     if (!document.getElementById('p').checked) { msg.textContent = 'Per inviare la richiesta devi acconsentire al trattamento dei dati.'; return; }
-    msg.textContent = 'Bozza: l’invio diretto sarà attivo quando il sito viene pubblicato.';
+    var form = document.getElementById('f');
+    if (!document.getElementById('n').value.trim() || !document.getElementById('m').value.trim()) {
+      msg.textContent = 'Scrivi almeno il tuo nome e cosa ti serve.';
+      return;
+    }
+    if (!document.getElementById('t').value.trim() && !document.getElementById('e').value.trim()) {
+      msg.textContent = 'Lascia un numero di telefono o un’email per essere ricontattato.';
+      return;
+    }
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    msg.textContent = 'Invio in corso…';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      if (d.success) {
+        form.reset();
+        msg.textContent = 'Grazie! Abbiamo ricevuto la tua richiesta e ti ricontatteremo presto.';
+      } else {
+        msg.textContent = 'Non è stato possibile inviare. Chiamaci allo 06 55 93 477.';
+      }
+    }).catch(function () {
+      msg.textContent = 'Non è stato possibile inviare. Chiamaci allo 06 55 93 477.';
+    }).then(function () { btn.disabled = false; });
   });
 
   /* Orari: 0 = domenica. Fasce in minuti dalla mezzanotte. */
