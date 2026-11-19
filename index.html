@@ -181,17 +181,30 @@
   .promo-close:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
   .promo-month { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
   .promo-card h2 { font-size: clamp(32px, 7vw, 42px); }
-  .scratch { position: relative; height: 316px; margin-top: 4px; border-radius: 6px; overflow: hidden; background: radial-gradient(120% 70% at 50% 0%, rgba(255, 255, 255, .26), transparent 62%), linear-gradient(150deg, #131c40, var(--navy) 62%, var(--navy-soft)); box-shadow: 0 14px 34px rgba(29, 42, 92, .28); }
-  .scratch-prize { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding: 100px 18px 22px; }
+  .scratch { position: relative; height: 316px; margin-top: 4px; border-radius: 6px; overflow: hidden; background: radial-gradient(ellipse 130% 80% at 50% -8%, rgba(212, 160, 23, .18), transparent 62%), linear-gradient(160deg, #0a0a0a, #151515 55%, #1e1e1e); box-shadow: 0 14px 34px rgba(0, 0, 0, .35); }
+  .scratch-prize { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 72px 16px 18px; }
   .scratch-cover { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: pointer; transition: opacity .5s ease; }
-  .prize-in { text-align: center; }
-  .prize-logo { position: absolute; z-index: 3; top: 18px; left: 50%; transform: translateX(-50%); pointer-events: none; display: block; width: 104px; padding: 7px 12px; background: #fff; border-radius: 16px; box-shadow: 0 0 0 4px rgba(255, 255, 255, .16), 0 0 34px rgba(255, 224, 150, .55); }
+  .prize-in { position: relative; z-index: 2; text-align: center; width: 100%; }
+  .prize-logo { position: absolute; z-index: 3; top: 16px; left: 50%; transform: translateX(-50%); pointer-events: none; display: block; width: 96px; padding: 7px 11px; background: #fff; border-radius: 14px; box-shadow: 0 0 0 4px rgba(212, 160, 23, .18), 0 0 34px rgba(212, 160, 23, .45); }
   .prize-logo img { display: block; width: 100%; height: auto; }
   .scratch-prize h2 { color: #fff; font-size: clamp(30px, 7vw, 38px); }
   .scratch-prize h2 em { display: block; font-style: italic; color: #f0cf86; }
-  .scratch-text { margin: 12px auto 0; color: rgba(255, 255, 255, .84); font-size: 15.5px; line-height: 1.45; max-width: 30ch; }
+  .scratch-text { margin: 11px auto 0; color: rgba(255, 255, 255, .8); font-size: 13px; line-height: 1.5; max-width: 33ch; }
+  .scratch-text strong { color: #fff; font-weight: 700; }
+  /* Black Friday: badge, due blocchi offerta, codice */
+  .scratch-prize h2.bf-badge { display: inline-block; font-family: Figtree, system-ui, sans-serif; font-size: 9.5px; font-weight: 800; letter-spacing: .26em; text-transform: uppercase; color: #0a0a0a; background: linear-gradient(135deg, #f0cf86, #d4a017); padding: 4px 15px; border-radius: 4px; margin: 0 0 11px; }
+  .offers { display: flex; align-items: stretch; width: 100%; max-width: 290px; margin: 0 auto; border: 1.5px solid rgba(212, 160, 23, .42); border-radius: 12px; background: rgba(212, 160, 23, .07); overflow: hidden; }
+  .offer { flex: 1; padding: 13px 8px 12px; display: flex; flex-direction: column; justify-content: center; }
+  .offer + .offer { border-left: 1.5px solid rgba(212, 160, 23, .42); }
+  .offer .pct { display: block; font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: clamp(32px, 9vw, 40px); line-height: 1; color: #d4a017; }
+  .offer .what { display: block; margin-top: 5px; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; line-height: 1.35; }
+  .offer .sub { display: block; margin-top: 2px; font-size: 9.5px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: rgba(255, 255, 255, .55); }
+  .code-box { display: inline-block; margin-top: 9px; background: rgba(212, 160, 23, .14); border: 1.5px solid rgba(212, 160, 23, .45); padding: 5px 18px; border-radius: 8px; }
+  .code-box span { font-size: 16px; font-weight: 800; letter-spacing: .18em; color: #d4a017; }
+  .promo-cta .btn.primary { background: #c0392b; border-color: #c0392b; box-shadow: 0 10px 24px rgba(192, 57, 43, .22); }
+  .promo-cta .btn.ghost { color: #c0392b; border-color: #c0392b; }
   .spark { position: absolute; width: 14px; height: 14px; background: #fff3cf; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); opacity: 0; }
-  .spark.s1 { left: 12%; top: 16%; } .spark.s2 { right: 12%; top: 12%; width: 20px; height: 20px; } .spark.s3 { left: 8%; bottom: 24%; width: 10px; height: 10px; } .spark.s4 { right: 9%; bottom: 20%; } .spark.s5 { left: 50%; bottom: 7%; width: 9px; height: 9px; }
+  .spark.s1 { left: 6%; top: 13%; } .spark.s2 { right: 6%; top: 10%; width: 20px; height: 20px; } .spark.s3 { left: 5%; bottom: 7%; width: 10px; height: 10px; } .spark.s4 { right: 5%; bottom: 6%; } .spark.s5 { right: 19%; top: 5%; width: 9px; height: 9px; }
   .shine { position: absolute; top: 0; bottom: 0; left: -40%; width: 30%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .28), transparent); transform: skewX(-18deg); opacity: 0; }
   .scratch.done .spark { opacity: 1; }
   @media (prefers-reduced-motion: no-preference) {
@@ -345,14 +358,27 @@
 <div class="promo" id="promo" role="dialog" aria-modal="true" aria-labelledby="promo-title" aria-hidden="true">
   <div class="promo-card">
     <button type="button" class="promo-close" id="promo-close" aria-label="Chiudi">&times;</button>
-    <p class="promo-month" id="promo-month">Novembre</p>
+    <p class="promo-month" id="promo-month">Black Friday</p>
     <div class="scratch" id="scratch">
       <div class="scratch-prize">
         <i class="spark s1"></i><i class="spark s2"></i><i class="spark s3"></i><i class="spark s4"></i><i class="spark s5"></i>
         <span class="shine"></span>
         <div class="prize-in">
-          <h2 id="promo-title">Controllo della vista <em>gratuito</em></h2>
-          <p class="scratch-text">Su prenotazione, per tutto il mese. Chiamaci o scrivici e fissiamo giorno e orario.</p>
+          <h2 class="bf-badge" id="promo-title">Black Friday</h2>
+          <div class="offers">
+            <div class="offer">
+              <span class="pct">&minus;30%</span>
+              <span class="what">Montature</span>
+              <span class="sub">Vista e sole</span>
+            </div>
+            <div class="offer">
+              <span class="pct">&minus;20%</span>
+              <span class="what">Accessori</span>
+              <span class="sub">Tutta la linea</span>
+            </div>
+          </div>
+          <p class="scratch-text">Presenta questo codice in negozio e approfitta delle offerte <strong>fin da subito</strong>!</p>
+          <div class="code-box"><span>BLACK30</span></div>
         </div>
       </div>
       <canvas class="scratch-cover" id="scratch-cover" aria-hidden="true"></canvas>
@@ -361,8 +387,8 @@
     </div>
     <button type="button" class="scratch-skip" id="scratch-skip">Scopri subito</button>
     <div class="promo-cta" id="promo-cta" hidden>
-      <a class="btn primary" href="tel:+39065593477">Prenota: 06 55 93 477</a>
-      <a class="btn ghost" href="#contatti" id="promo-scrivi">Oppure scrivici</a>
+      <a class="btn primary" href="#contatti" id="promo-scrivi">Vieni a trovarci</a>
+      <a class="btn ghost" href="tel:+39065593477">Chiamaci: 06 55 93 477</a>
     </div>
   </div>
 </div>
@@ -692,7 +718,7 @@
 <script>
 /* Avviso del mese: per cambiarlo modifica il testo qui sopra e la data di scadenza qui sotto */
 (function () {
-  var PROMO_FINO_AL = '2026-11-30';
+  var PROMO_FINO_AL = '2026-11-28';
   var promo = document.getElementById('promo');
   var chiudi = document.getElementById('promo-close');
   var box = document.getElementById('scratch');
@@ -726,12 +752,12 @@
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillStyle = '#1d2a5c';
     ctx.font = '400 29px "Instrument Serif", Georgia, serif';
-    ctx.fillText('C’è una sorpresa', w / 2, h * 0.43);
-    ctx.fillText('per te', w / 2, h * 0.43 + 32);
+    ctx.fillText('Black Friday', w / 2, h * 0.40);
+    ctx.fillText('C’è un’offerta per te', w / 2, h * 0.40 + 32);
     ctx.font = '700 13px Figtree, system-ui, sans-serif';
     if ('letterSpacing' in ctx) ctx.letterSpacing = '2px';
     ctx.fillStyle = '#3a4a85';
-    ctx.fillText('GRATTA CON IL DITO', w / 2, h * 0.43 + 72);
+    ctx.fillText('GRATTA CON IL DITO', w / 2, h * 0.40 + 72);
     if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
   }
 
