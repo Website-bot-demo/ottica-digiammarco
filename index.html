@@ -199,7 +199,7 @@
   .offer .pct { display: block; font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: clamp(32px, 9vw, 40px); line-height: 1; color: #d4a017; }
   .offer .what { display: block; margin-top: 5px; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #fff; line-height: 1.35; }
   .offer .sub { display: block; margin-top: 2px; font-size: 9.5px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; color: rgba(255, 255, 255, .55); }
-  .code-box { display: inline-block; margin-top: 9px; background: rgba(212, 160, 23, .14); border: 1.5px solid rgba(212, 160, 23, .45); padding: 5px 18px; border-radius: 8px; }
+  .code-box { display: inline-block; text-decoration: none; cursor: pointer; margin-top: 9px; background: rgba(212, 160, 23, .14); border: 1.5px solid rgba(212, 160, 23, .45); padding: 5px 18px; border-radius: 8px; }
   .code-box span { font-size: 16px; font-weight: 800; letter-spacing: .18em; color: #d4a017; }
   .promo-cta .btn.primary { background: #c0392b; border-color: #c0392b; box-shadow: 0 10px 24px rgba(192, 57, 43, .22); }
   .promo-cta .btn.ghost { color: #c0392b; border-color: #c0392b; }
@@ -254,6 +254,8 @@
 
   /* banda */
   #newsletter { background: var(--tint, #f3f5fa); }
+  .nl-steps { max-width: 46ch; margin: 18px auto 0; padding-left: 22px; color: var(--fg); font-size: 17px; }
+  .nl-steps li { margin: 6px 0; }
   .nl-frame { display: block; width: 100%; max-width: 560px; height: 680px; margin: 28px auto 0; border: 0; border-radius: 14px; background: #fff; }
   @media (max-width: 560px) { .nl-frame { height: 820px; } }
   .band { background: linear-gradient(135deg, #131c40, var(--navy)); color: #fff; }
@@ -380,8 +382,8 @@
               <span class="sub">Tutta la linea</span>
             </div>
           </div>
-          <p class="scratch-text">Presenta questo codice in negozio e approfitta delle offerte <strong>fin da subito</strong>!</p>
-          <div class="code-box"><span>BLACK30</span></div>
+          <p class="scratch-text">Valido in negozio <strong>fino al 28 novembre</strong>. Il codice sconto lo ricevi <strong>via email</strong>: iscriviti e conferma il tuo indirizzo.</p>
+          <a class="code-box" href="#newsletter" id="promo-codice"><span>Ricevi il codice</span></a>
         </div>
       </div>
       <canvas class="scratch-cover" id="scratch-cover" aria-hidden="true"></canvas>
@@ -549,7 +551,12 @@
     <div class="wrap">
       <p class="eyebrow">Newsletter</p>
       <h2>Iscriviti e ricevi il tuo sconto</h2>
-      <p class="lead">Lascia la tua email: dopo la conferma ti mandiamo il codice <strong>BLACK30</strong>, valido in negozio fino al 28 novembre. Poi solo consigli per la salute dei tuoi occhi, novità e promozioni riservate agli iscritti.</p>
+      <p class="lead">Il codice sconto del Black Friday (<strong>&minus;30% sulle montature</strong> da vista e da sole, <strong>&minus;20% sugli accessori</strong>, valido in negozio fino al 28 novembre) arriva solo via email. Come fare:</p>
+      <ol class="nl-steps">
+        <li>Scrivi la tua email qui sotto e premi <strong>Iscriviti</strong>.</li>
+        <li>Apri l'email che ti mandiamo e clicca <strong>Confermo l'iscrizione</strong>.</li>
+        <li>Subito dopo ricevi una seconda email con il <strong>tuo codice sconto</strong>.</li>
+      </ol>
       <iframe class="nl-frame" src="https://5102c9c5.sibforms.com/v2/serve/MUIFAIoldY3AXHRMJYZkwN1E7t5b17VVc5HNrf_aRxIBBH9t7KvdhqpUrj_-wphnNyP-TUB9pn2j6O_Q7lwHdtHqF0TxkUudPRYlnb0v2ehDG5lxsSK_vZpqDABRs0VSzEWhWlu9F_Ni2eiA-xhtYtCEwGFlKVvVBqp3GKVbTPY51u5PqPEs-chQJCfHcQMXQel6fhWkJhP0MfAsXA==" title="Iscrizione alla newsletter dell'Ottica Di Giammarco" loading="lazy" scrolling="auto"></iframe>
     </div>
   </section>
@@ -805,6 +812,8 @@
   cover.addEventListener('pointercancel', function () { grattando = false; });
   salta.addEventListener('click', scopri);
   scrivi.addEventListener('click', chiudiPromo);
+  var codice = document.getElementById('promo-codice');
+  if (codice) codice.addEventListener('click', chiudiPromo);
 
   var prima = null;
   function apri() {
