@@ -253,6 +253,9 @@
   .reviews-link { margin: 26px 0 0; font-size: 16px; text-align: center; }
 
   /* banda */
+  #newsletter { background: var(--tint, #f3f5fa); }
+  .nl-frame { display: block; width: 100%; max-width: 560px; height: 680px; margin: 28px auto 0; border: 0; border-radius: 14px; background: #fff; }
+  @media (max-width: 560px) { .nl-frame { height: 820px; } }
   .band { background: linear-gradient(135deg, #131c40, var(--navy)); color: #fff; }
   .band .wrap { padding-block: 60px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; }
   .band h2 { color: #fff; }
@@ -387,7 +390,7 @@
     </div>
     <button type="button" class="scratch-skip" id="scratch-skip">Scopri subito</button>
     <div class="promo-cta" id="promo-cta" hidden>
-      <a class="btn primary" href="#contatti" id="promo-scrivi">Vieni a trovarci</a>
+      <a class="btn primary" href="#newsletter" id="promo-scrivi">Ricevilo via email</a>
       <a class="btn ghost" href="tel:+39065593477">Chiamaci: 06 55 93 477</a>
     </div>
   </div>
@@ -541,6 +544,15 @@
       </div>
     </div>
   </div>
+
+  <section id="newsletter">
+    <div class="wrap">
+      <p class="eyebrow">Newsletter</p>
+      <h2>Iscriviti e ricevi il tuo sconto</h2>
+      <p class="lead">Lascia la tua email: dopo la conferma ti mandiamo il codice <strong>BLACK30</strong>, valido in negozio fino al 28 novembre. Poi solo consigli per la salute dei tuoi occhi, novità e promozioni riservate agli iscritti.</p>
+      <iframe class="nl-frame" src="https://5102c9c5.sibforms.com/v2/serve/MUIFAIoldY3AXHRMJYZkwN1E7t5b17VVc5HNrf_aRxIBBH9t7KvdhqpUrj_-wphnNyP-TUB9pn2j6O_Q7lwHdtHqF0TxkUudPRYlnb0v2ehDG5lxsSK_vZpqDABRs0VSzEWhWlu9F_Ni2eiA-xhtYtCEwGFlKVvVBqp3GKVbTPY51u5PqPEs-chQJCfHcQMXQel6fhWkJhP0MfAsXA==" title="Iscrizione alla newsletter dell'Ottica Di Giammarco" loading="lazy" scrolling="auto"></iframe>
+    </div>
+  </section>
 
   <section id="contatti">
     <div class="wrap">
@@ -728,6 +740,7 @@
   var scrivi = document.getElementById('promo-scrivi');
   if (!promo || !chiudi || !box || !cover || !salta || !cta || !scrivi) return;
   if (new Date() > new Date(PROMO_FINO_AL + 'T23:59:59')) return;
+  if (location.hash === '#newsletter') return;
   try { if (sessionStorage.getItem('promo-chiuso')) return; } catch (e) {}
 
   var ctx = cover.getContext('2d');
