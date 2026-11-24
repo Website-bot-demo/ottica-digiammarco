@@ -182,7 +182,7 @@
   .promo-month { margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
   .promo-card h2 { font-size: clamp(32px, 7vw, 42px); }
   .scratch { position: relative; height: 316px; margin-top: 4px; border-radius: 6px; overflow: hidden; background: radial-gradient(ellipse 130% 80% at 50% -8%, rgba(212, 160, 23, .18), transparent 62%), linear-gradient(160deg, #0a0a0a, #151515 55%, #1e1e1e); box-shadow: 0 14px 34px rgba(0, 0, 0, .35); }
-  .scratch-prize { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 72px 16px 18px; }
+  .scratch-prize { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 98px 16px 18px; }
   .scratch-cover { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: pointer; transition: opacity .5s ease; }
   .prize-in { position: relative; z-index: 2; text-align: center; width: 100%; }
   .prize-logo { position: absolute; z-index: 3; top: 16px; left: 50%; transform: translateX(-50%); pointer-events: none; display: block; width: 96px; padding: 7px 11px; background: #fff; border-radius: 14px; box-shadow: 0 0 0 4px rgba(212, 160, 23, .18), 0 0 34px rgba(212, 160, 23, .45); }
@@ -253,11 +253,23 @@
   .reviews-link { margin: 26px 0 0; font-size: 16px; text-align: center; }
 
   /* banda */
-  #newsletter { background: var(--tint, #f3f5fa); }
-  .nl-steps { max-width: 46ch; margin: 18px auto 0; padding-left: 22px; color: var(--fg); font-size: 17px; }
-  .nl-steps li { margin: 6px 0; }
-  .nl-frame { display: block; width: 100%; max-width: 560px; height: 680px; margin: 28px auto 0; border: 0; border-radius: 14px; background: #fff; }
-  @media (max-width: 560px) { .nl-frame { height: 820px; } }
+  #newsletter { background: var(--tint); }
+  .nl-card { max-width: 560px; margin: 26px auto 0; padding: 26px 22px 22px; border-radius: 18px; text-align: center; color: #fff;
+    background: radial-gradient(ellipse 130% 80% at 50% -8%, rgba(212, 160, 23, .2), transparent 62%), linear-gradient(160deg, #0a0a0a, #151515 55%, #1e1e1e);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .22); }
+  .nl-offers { display: flex; border: 1.5px solid rgba(212, 160, 23, .45); border-radius: 14px; background: rgba(212, 160, 23, .07); overflow: hidden; }
+  .nl-offer { flex: 1; padding: 16px 8px 14px; }
+  .nl-offer + .nl-offer { border-left: 1.5px solid rgba(212, 160, 23, .45); }
+  .nl-offer .pct { display: block; font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: clamp(40px, 11vw, 54px); line-height: 1; color: #d4a017; }
+  .nl-offer .what { display: block; margin-top: 6px; font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .nl-offer .sub { display: block; margin-top: 2px; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
+  .nl-valid { margin: 14px 0 0; font-size: 15px; color: rgba(255, 255, 255, .85); }
+  .nl-steps { list-style: none; display: flex; gap: 10px; margin: 18px 0 0; padding: 0; text-align: left; }
+  .nl-steps li { flex: 1; display: flex; align-items: center; gap: 9px; font-size: 14px; line-height: 1.3; color: rgba(255, 255, 255, .9); }
+  .nl-steps span { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 13px; color: #0a0a0a; background: linear-gradient(135deg, #f0cf86, #d4a017); }
+  .nl-frame { display: block; width: 100%; max-width: 560px; height: 440px; margin: 18px auto 0; border: 0; border-radius: 14px; background: transparent; }
+  .nl-spam { max-width: 560px; margin: 10px auto 0; text-align: center; color: var(--muted); font-size: 14.5px; }
+  @media (max-width: 560px) { .nl-steps { flex-direction: column; gap: 8px; } .nl-frame { height: 500px; } }
   .band { background: linear-gradient(135deg, #131c40, var(--navy)); color: #fff; }
   .band .wrap { padding-block: 60px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; }
   .band h2 { color: #fff; }
@@ -382,8 +394,7 @@
               <span class="sub">Tutta la linea</span>
             </div>
           </div>
-          <p class="scratch-text">Valido in negozio <strong>fino al 28 novembre</strong>. Il codice sconto lo ricevi <strong>via email</strong>: iscriviti e conferma il tuo indirizzo.</p>
-          <a class="code-box" href="#newsletter" id="promo-codice"><span>Ricevi il codice</span></a>
+          <p class="scratch-text">Il codice sconto ti arriva <strong>via email</strong>.<br>Valido in negozio fino al 28 novembre.</p>
         </div>
       </div>
       <canvas class="scratch-cover" id="scratch-cover" aria-hidden="true"></canvas>
@@ -392,7 +403,7 @@
     </div>
     <button type="button" class="scratch-skip" id="scratch-skip">Scopri subito</button>
     <div class="promo-cta" id="promo-cta" hidden>
-      <a class="btn primary" href="#newsletter" id="promo-scrivi">Ricevilo via email</a>
+      <a class="btn primary" href="#iscriviti" id="promo-scrivi">Ricevilo via email</a>
       <a class="btn ghost" href="tel:+39065593477">Chiamaci: 06 55 93 477</a>
     </div>
   </div>
@@ -549,15 +560,21 @@
 
   <section id="newsletter">
     <div class="wrap">
-      <p class="eyebrow">Newsletter</p>
-      <h2>Iscriviti e ricevi il tuo sconto</h2>
-      <p class="lead">Il codice sconto del Black Friday (<strong>&minus;30% sulle montature</strong> da vista e da sole, <strong>&minus;20% sugli accessori</strong>, valido in negozio fino al 28 novembre) arriva solo via email. Come fare:</p>
-      <ol class="nl-steps">
-        <li>Scrivi la tua email qui sotto e premi <strong>Iscriviti</strong>.</li>
-        <li>Apri l'email che ti mandiamo e clicca <strong>Confermo l'iscrizione</strong>.</li>
-        <li>Subito dopo ricevi una seconda email con il <strong>tuo codice sconto</strong>.</li>
-      </ol>
-      <iframe class="nl-frame" src="https://5102c9c5.sibforms.com/v2/serve/MUIFAIoldY3AXHRMJYZkwN1E7t5b17VVc5HNrf_aRxIBBH9t7KvdhqpUrj_-wphnNyP-TUB9pn2j6O_Q7lwHdtHqF0TxkUudPRYlnb0v2ehDG5lxsSK_vZpqDABRs0VSzEWhWlu9F_Ni2eiA-xhtYtCEwGFlKVvVBqp3GKVbTPY51u5PqPEs-chQJCfHcQMXQel6fhWkJhP0MfAsXA==" title="Iscrizione alla newsletter dell'Ottica Di Giammarco" loading="lazy" scrolling="auto"></iframe>
+      <p class="eyebrow">Black Friday</p>
+      <h2>Ricevi il tuo sconto</h2>
+      <div class="nl-card">
+        <div class="nl-offers">
+          <div class="nl-offer"><span class="pct">&minus;30%</span><span class="what">Montature</span><span class="sub">Vista e sole</span></div>
+          <div class="nl-offer"><span class="pct">&minus;20%</span><span class="what">Accessori</span><span class="sub">Tutta la linea</span></div>
+        </div>
+        <p class="nl-valid">Valido in negozio fino al 28 novembre</p>
+        <ol class="nl-steps">
+          <li><span>1</span>Scrivi la tua email</li>
+          <li><span>2</span>Conferma dal link che ti mandiamo</li>
+          <li><span>3</span>Ricevi il codice sconto</li>
+        </ol>
+      </div>
+      <iframe class="nl-frame" id="iscriviti" src="https://5102c9c5.sibforms.com/v2/serve/MUIFAIoldY3AXHRMJYZkwN1E7t5b17VVc5HNrf_aRxIBBH9t7KvdhqpUrj_-wphnNyP-TUB9pn2j6O_Q7lwHdtHqF0TxkUudPRYlnb0v2ehDG5lxsSK_vZpqDABRs0VSzEWhWlu9F_Ni2eiA-xhtYtCEwGFlKVvVBqp3GKVbTPY51u5PqPEs-chQJCfHcQMXQel6fhWkJhP0MfAsXA==" title="Iscrizione alla newsletter dell'Ottica Di Giammarco" scrolling="auto"></iframe>
     </div>
   </section>
 
@@ -747,7 +764,7 @@
   var scrivi = document.getElementById('promo-scrivi');
   if (!promo || !chiudi || !box || !cover || !salta || !cta || !scrivi) return;
   if (new Date() > new Date(PROMO_FINO_AL + 'T23:59:59')) return;
-  if (location.hash === '#newsletter') return;
+  if (location.hash === '#newsletter' || location.hash === '#iscriviti') return;
   try { if (sessionStorage.getItem('promo-chiuso')) return; } catch (e) {}
 
   var ctx = cover.getContext('2d');
@@ -812,8 +829,6 @@
   cover.addEventListener('pointercancel', function () { grattando = false; });
   salta.addEventListener('click', scopri);
   scrivi.addEventListener('click', chiudiPromo);
-  var codice = document.getElementById('promo-codice');
-  if (codice) codice.addEventListener('click', chiudiPromo);
 
   var prima = null;
   function apri() {
