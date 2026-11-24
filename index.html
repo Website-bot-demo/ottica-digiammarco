@@ -591,12 +591,12 @@
             <dd>
               <table class="hours">
                 <tbody>
-                  <tr data-d="1"><th scope="row">Lunedì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
+                  <tr data-d="1"><th scope="row">Lunedì</th><td>16:00–19:30</td></tr>
                   <tr data-d="2"><th scope="row">Martedì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
                   <tr data-d="3"><th scope="row">Mercoledì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
                   <tr data-d="4"><th scope="row">Giovedì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
                   <tr data-d="5"><th scope="row">Venerdì</th><td>9:30–13:00 · 16:00–19:30</td></tr>
-                  <tr data-d="6"><th scope="row">Sabato</th><td>9:30–13:00</td></tr>
+                  <tr data-d="6"><th scope="row">Sabato</th><td>9:30–13:00 · 16:00–19:30</td></tr>
                   <tr data-d="0"><th scope="row">Domenica</th><td>Chiuso</td></tr>
                 </tbody>
               </table>
@@ -671,7 +671,7 @@
 
   /* Orari: 0 = domenica. Fasce in minuti dalla mezzanotte. */
   var M = 60, MATT = [9 * M + 30, 13 * M], POM = [16 * M, 19 * M + 30];
-  var ORARI = { 0: [], 1: [MATT, POM], 2: [MATT, POM], 3: [MATT, POM], 4: [MATT, POM], 5: [MATT, POM], 6: [MATT] };
+  var ORARI = { 0: [], 1: [POM], 2: [MATT, POM], 3: [MATT, POM], 4: [MATT, POM], 5: [MATT, POM], 6: [MATT, POM] };
   var WD = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
   var romeFmt = null;
   try { romeFmt = new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Rome', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false }); } catch (err) { romeFmt = null; }
